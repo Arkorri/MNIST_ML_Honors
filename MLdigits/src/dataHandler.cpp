@@ -105,7 +105,6 @@ void dataHandler::shuffle_data(){
 }//dataHandler
 
 void dataHandler::split_data(){
-	std::unordered_set<int> used_indexes;
 	int train_size = data_array->size() * this->TRAINING_SPLIT;
 	int test_size = data_array->size() * this->TEST_SPLIT + train_size;
 	int valid_size = data_array->size() * this->VALIDATION_SPLIT + test_size;
@@ -157,17 +156,17 @@ uint32_t dataHandler::convert_to_little_endian(const unsigned char* bytes){
 			(bytes[1] << 16) |
 			(bytes[2] << 8) |
 			(bytes[3]));
-}
+}//convert_to_little_endian
 
 std::vector<data*> *dataHandler::get_training_data(){
 	return training_data;
-}
+}//get_training_data
 
 std::vector<data*> *dataHandler::get_test_data(){
 	return test_data;
-}
+}//get_test_data
 
 std::vector<data*> *dataHandler::get_validation_data(){
 	return validation_data;
-}
+}//get_validation_data
 
