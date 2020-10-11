@@ -10,11 +10,12 @@
 
 #include <fstream>
 #include "stdint.h"
-#include "data.hpp"
 #include <vector>
 #include <string>
 #include <map>
 #include <unordered_set>
+#include "Data.hpp"
+#include "Utilities.hpp"
 
 //DATAHANDLER CLASS
 //Description:		This class handles all file operations as well as
@@ -26,10 +27,18 @@ public:
 	dataHandler();
 	virtual ~dataHandler();
 
+	//load
+	//Description:		Calls all necessary functions for
+	//					reading, converting, and formatting
+	//					MNIST data
+	void load(void);
+
 	//read_feature_vector
 	//Description:		reads a .idx3-ubyte file into an
 	//						array holding data
 	//Preconditions:	-provided path/file must exist
+	//					-files MUST be in the same format as listed
+	//						on the MNIST website
 	//Postconditions:	-reads data into the data class
 	//					-puts the data class into the data_array
 	//					-input file is not altered
@@ -39,6 +48,8 @@ public:
 	//Description:		reads a .idx1-ubyte file into an
 	//						array holding data
 	//Preconditions:	-provided path/file must exist
+	//					-files MUST be in the same format as listed
+	//						on the MNIST website
 	//Postconditions:	-updates the array_data with proper labels
 	//					-input file is not altered
 	void read_feature_labels(std::string path);
@@ -99,6 +110,44 @@ public:
 	//Postconditions	-returned array successfully
 	std::vector<data*> *get_validation_data();
 
+	//setFeatuePath
+	//Description:		sets the path to the image file
+	//						and verifies file format
+	//Preconditions:	-none
+	//Postconditions:	-image file path is set and verified
+	//					-returns true if successful, false if not
+	bool setFeaturePath(void);
+
+	//setLabelPath
+	//Description:		sets the path to the label file
+	//						and verifies file format
+	//Preconditions:	-none
+	//Postconditions:	-label file path is set and verified
+	//					-returns true if successful, false if not
+	bool setLabelPath(void);
+
+	//setFeatuePath (overload)
+	//Description:		sets the path to the image file
+	//						and verifies file format.
+	//						This overloaded version does not
+	//						take user input and instead uses
+	//						default values
+	//Preconditions:	-none
+	//Postconditions:	-image file path is set and verified
+	//					-returns true if successful, false if not
+	bool setFeaturePath(std::string);
+
+	//setLabelPath (overload)
+	//Description:		sets the path to the label file
+	//						and verifies file format.
+	//						This overloaded version does not
+	//						take user input and instead uses
+	//						default values
+	//Preconditions:	-none
+	//Postconditions:	-label file path is set and verified
+	//					-returns true if successful, false if not
+	bool setLabelPath(std::string);
+
 private:
 	std::vector<data *> *data_array;
 	std::vector<data *> *training_data;
@@ -107,6 +156,8 @@ private:
 	int num_classes;
 	int vector_size;
 	std::map<uint8_t, int> class_map;
+	std::string featurePath;
+	std::string labelPath;
 
 	//used for data splits
 	//double represents a % of data to be used for each set of data

@@ -5,16 +5,19 @@
  *      Author: avest
  */
 
-#include "dataHandler.hpp"
 #include <iostream>
 #include <ctime>
 #include <algorithm>
+#include "DataHandler.hpp"
 
 dataHandler::dataHandler() {
 	this->data_array = new std::vector<data *>;
 	this->test_data = new std::vector<data *>;
 	this->training_data = new std::vector<data *>;
 	this->validation_data = new std::vector<data *>;
+	this->featurePath = "";
+	this->labelPath = "";
+	this->num_classes = 0;
 }//dataHandler
 
 dataHandler::~dataHandler() {
@@ -26,6 +29,13 @@ dataHandler::~dataHandler() {
 	delete this->training_data;
 	delete this->validation_data;
 }//~dataHandler
+
+void dataHandler::load(void){
+	this->read_feature_vector(featurePath);
+	this->read_feature_labels(labelPath);
+	this->split_data();
+	this->count_classes();
+}
 
 void dataHandler::read_feature_vector(std::string path){
 	uint32_t header[4];// |MAGIC|NUM IMAGES|ROW SIZE|COLUMN SIZE|
@@ -169,4 +179,52 @@ std::vector<data*> *dataHandler::get_test_data(){
 std::vector<data*> *dataHandler::get_validation_data(){
 	return validation_data;
 }//get_validation_data
+
+bool dataHandler::setFeaturePath(void){
+	std::string extension = ".idx3-ubyte";
+	std::string path = "";
+	do{
+		path = getString(64);
+		if(path.length() > extension.length()){
+			if(0 == path.compare(path.length() - extension.length(), extension.length(), extension)){
+				this->featurePath = path;
+				return true;
+			} else {
+				std::cerr << "incorrect file type, please try again" << std::endl;
+			}//if/e;se
+		}else {
+			std::cerr << "incorrect file type, please try again" << std::endl;
+		}//if/else
+	}while(true);//do-while
+	return false;
+}//setFeaturePath
+
+bool dataHandler::setFeaturePath(std::string path){//overloaded for default
+	this->featurePath = path;
+	return true;
+}
+
+bool dataHandler::setLabelPath(void){
+	std::string extension = ".idx1-ubyte";
+	std::string path = "";
+	do{
+		path = getString(64);
+		if(path.length() > extension.length()){
+			if(0 == path.compare(path.length() - extension.length(), extension.length(), extension)){
+				this->labelPath = path;
+				return true;
+			} else {
+				std::cerr << "incorrect file type, please try again" << std::endl;
+			}//if/else
+		}else {
+			std::cerr << "incorrect file type, please try again" << std::endl;
+		}//if/else
+	}while(true);//do-while
+	return false;
+}
+
+bool dataHandler::setLabelPath(std::string path){//overloaded for default
+	this->labelPath = path;
+	return true;
+}
 

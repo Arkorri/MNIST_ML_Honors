@@ -5,7 +5,7 @@
  *      Author: avest
  */
 
-#include "data.hpp"
+#include "Data.hpp"
 
 data::data() {
 	this->feature_vector = new std::vector<uint8_t>;

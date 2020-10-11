@@ -7,17 +7,30 @@
 //============================================================================
 
 #include <iostream>
-#include "data.hpp"
-#include "dataHandler.hpp"
+#include "Data.hpp"
+#include "DataHandler.hpp"
 
 int main() {
 
 	dataHandler *dh = new dataHandler();
-	dh->read_feature_vector("./train-images.idx3-ubyte");
-	dh->read_feature_labels("./train-labels.idx1-ubyte");
-	dh->split_data();
-	dh->count_classes();
+	std::cout << "Do you want to use default data or use custom data?" << std::endl;
+	std::cout << "1. Default Data (recommended)" << std::endl;
+	std::cout << "2. Custom Data" << std::endl;
+	int choice = getInt(1,2);
+	if(choice == 1){
+		std::cout << "Using default MNIST data files" << std::endl;
+		dh->setFeaturePath("./train-images.idx3-ubyte");
+		dh->setLabelPath("./train-labels.idx1-ubyte");
+	} else {
+		std::cout << "Please enter the image file path" << std::endl;
+		dh->setFeaturePath();
+		std::cout << "Please enter the label file path" << std::endl;
+		dh->setLabelPath();
+		std::cout << "Using custom data files" << std::endl;
+	}
+	dh->load();
 
+	delete dh;
 	std::cout << "end program" << std::endl;
 	return 0;
 }//main
