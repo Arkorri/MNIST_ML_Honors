@@ -3,16 +3,21 @@
 // Author      : Avery Kempton
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : ML program to identifty handwritten digits pulled from MNIST
 //============================================================================
 
 #include <iostream>
-using namespace std;
+#include "data.hpp"
+#include "dataHandler.hpp"
 
 int main() {
 
+	dataHandler *dh = new dataHandler();
+	dh->read_feature_vector("./train-images.idx3-ubyte");
+	dh->read_feature_labels("./train-labels.idx1-ubyte");
+	dh->split_data();
+	dh->count_classes();
 
-
-	cout << "end program" << endl; // prints !!!Hello World!!!
+	std::cout << "end program" << std::endl;
 	return 0;
-}
+}//main
