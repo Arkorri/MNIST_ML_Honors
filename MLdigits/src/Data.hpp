@@ -75,9 +75,9 @@ public:
 	std::vector<uint8_t> * get_feature_vector();
 
 private:
-	std::vector<uint8_t> * feature_vector;
-	uint8_t label;
-	int enum_label;
+	std::vector<uint8_t> * feature_vector;	//holds the bytes(pixels for an image)
+	uint8_t label;							//identifies the class
+	int enum_label;							//enumeration for more complicated class types
 
 };//data
 

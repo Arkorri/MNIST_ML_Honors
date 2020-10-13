@@ -149,15 +149,15 @@ public:
 	bool setLabelPath(std::string);
 
 private:
-	std::vector<data *> *data_array;
-	std::vector<data *> *training_data;
-	std::vector<data *> *test_data;
-	std::vector<data *> *validation_data;
-	int num_classes;
-	int vector_size;
-	std::map<uint8_t, int> class_map;
-	std::string featurePath;
-	std::string labelPath;
+	std::vector<data *> *data_array;		//array holding all data from the file
+	std::vector<data *> *training_data;		//array holding a portion of data_array
+	std::vector<data *> *test_data;			//array holding a portion of data_array
+	std::vector<data *> *validation_data;	//array holding a portion of data_array
+	int num_classes;						//identifies how many different classes there are
+	//int vector_size;
+	std::map<uint8_t, int> class_map;		//
+	std::string featurePath;				//directory path for the file holding class data
+	std::string labelPath;					//directory path for the file holding class names
 
 	//used for data splits
 	//double represents a % of data to be used for each set of data

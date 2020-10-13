@@ -19,15 +19,15 @@ int main() {
 	int choice = getInt(1,2);
 	if(choice == 1){
 		std::cout << "Using default MNIST data files" << std::endl;
-		dh->setFeaturePath("./train-images.idx3-ubyte");
-		dh->setLabelPath("./train-labels.idx1-ubyte");
+		dh->setFeaturePath("./train-images.idx3-ubyte");	//recommended file
+		dh->setLabelPath("./train-labels.idx1-ubyte");		//recommended file
 	} else {
 		std::cout << "Please enter the image file path" << std::endl;
 		dh->setFeaturePath();
 		std::cout << "Please enter the label file path" << std::endl;
 		dh->setLabelPath();
 		std::cout << "Using custom data files" << std::endl;
-	}
+	}//if/else
 	dh->load();
 
 	delete dh;

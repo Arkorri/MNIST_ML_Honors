@@ -10,7 +10,7 @@
 #include <algorithm>
 #include "DataHandler.hpp"
 
-dataHandler::dataHandler() {
+dataHandler::dataHandler() {//initialization of variables
 	this->data_array = new std::vector<data *>;
 	this->test_data = new std::vector<data *>;
 	this->training_data = new std::vector<data *>;
@@ -20,7 +20,7 @@ dataHandler::dataHandler() {
 	this->num_classes = 0;
 }//dataHandler
 
-dataHandler::~dataHandler() {
+dataHandler::~dataHandler() {//de-allocate dynamic memory
 	for(unsigned int i = 0; i < data_array->size(); i++){
 		delete data_array->at(i);
 	}
@@ -35,7 +35,7 @@ void dataHandler::load(void){
 	this->read_feature_labels(labelPath);
 	this->split_data();
 	this->count_classes();
-}
+}//load
 
 void dataHandler::read_feature_vector(std::string path){
 	uint32_t header[4];// |MAGIC|NUM IMAGES|ROW SIZE|COLUMN SIZE|
@@ -72,7 +72,7 @@ void dataHandler::read_feature_vector(std::string path){
 void dataHandler::read_feature_labels(std::string path){
 uint32_t header[2];// |MAGIC|NUM IMAGES|
 	unsigned char bytes[4];
-	FILE *file = fopen(path.c_str(), "rb");//read only
+	FILE *file = fopen(path.c_str(), "rb");//read bytes only
 	if(file){
 		for(unsigned int i = 0; i < 2; i++){
 			if(fread(bytes, sizeof(bytes), 1, file)){
@@ -202,7 +202,7 @@ bool dataHandler::setFeaturePath(void){
 bool dataHandler::setFeaturePath(std::string path){//overloaded for default
 	this->featurePath = path;
 	return true;
-}
+}//setFeaturePath
 
 bool dataHandler::setLabelPath(void){
 	std::string extension = ".idx1-ubyte";
@@ -221,10 +221,10 @@ bool dataHandler::setLabelPath(void){
 		}//if/else
 	}while(true);//do-while
 	return false;
-}
+}//setLabelPath
 
 bool dataHandler::setLabelPath(std::string path){//overloaded for default
 	this->labelPath = path;
 	return true;
-}
+}//setLabelPath
 
