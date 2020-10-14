@@ -54,7 +54,7 @@ public:
 	//Description:		Returns the length of the array
 	//Preconditions:	-none
 	//Postconditions:	-length returned
-	int get_feature_vector_size();
+	unsigned int get_feature_vector_size();
 
 	//get_label
 	//Description:		Returns the label
@@ -74,10 +74,13 @@ public:
 	//Postconditions	-array returned
 	std::vector<uint8_t> * get_feature_vector();
 
+	void set_distance(double);
+
 private:
 	std::vector<uint8_t> * feature_vector;	//holds the bytes(pixels for an image)
 	uint8_t label;							//identifies the class
 	int enum_label;							//enumeration for more complicated class types
+	double distance;
 
 };//data
 

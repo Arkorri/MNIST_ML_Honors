@@ -31,7 +31,27 @@ public:
 	//Description:		Calls all necessary functions for
 	//					reading, converting, and formatting
 	//					MNIST data
-	void load(void);
+	//Preconditions:	-feature and label paths have been set
+	//Postconditions:	-data read, converted, formatted, and split
+	//					-if failed, unloads the data and returns false
+	//					-returns true if successful
+	bool load(void);
+
+	//clear
+	//Descriptions:		Empties data in the class so that
+	//						new data can be loaded. (undoes
+	//						the load function)
+	//Preconditions:	-none
+	//Postconditions:	-vectors, and map were emptied
+	//					-does not clear the set paths
+	void unload(void);
+
+	//isLoaded
+	//Descriptions:		returns a true or false depending on if
+	//						the class has data loaded
+	//Preconditions:	-none
+	//Postconditions:	-none
+	bool isLoaded(void);
 
 	//read_feature_vector
 	//Description:		reads a .idx3-ubyte file into an
@@ -42,7 +62,8 @@ public:
 	//Postconditions:	-reads data into the data class
 	//					-puts the data class into the data_array
 	//					-input file is not altered
-	void read_feature_vector(std::string path);
+	//					-returns true if successful, false otherwise
+	bool read_feature_vector(std::string path);
 
 	//read_featire_labels
 	//Description:		reads a .idx1-ubyte file into an
@@ -52,7 +73,8 @@ public:
 	//						on the MNIST website
 	//Postconditions:	-updates the array_data with proper labels
 	//					-input file is not altered
-	void read_feature_labels(std::string path);
+	//					-returns true if successful, false otherwise
+	bool read_feature_labels(std::string path);
 
 	//split_data
 	//Description:		Splits the data into the training_data,
@@ -158,6 +180,7 @@ private:
 	std::map<uint8_t, int> class_map;		//
 	std::string featurePath;				//directory path for the file holding class data
 	std::string labelPath;					//directory path for the file holding class names
+	bool loaded;							//keeps track of if the class is holding data
 
 	//used for data splits
 	//double represents a % of data to be used for each set of data

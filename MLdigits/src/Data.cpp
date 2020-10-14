@@ -9,6 +9,9 @@
 
 data::data() {
 	this->feature_vector = new std::vector<uint8_t>;
+	this->distance = 0;
+	this->enum_label = 0;
+	this->label = 0;
 }//data
 
 data::~data() {
@@ -32,7 +35,7 @@ void data::set_enum_label(int val){
 	this->enum_label = val;
 }//set_enum_label
 
-int data::get_feature_vector_size(){
+unsigned int data::get_feature_vector_size(){
 	return this->feature_vector->size();
 }//get_feature_vector_size
 
@@ -47,4 +50,8 @@ uint8_t data::get_enum_label(){
 std::vector<uint8_t> * data::get_feature_vector(){
 	return this->feature_vector;
 }//get_feature_vector
+
+void data::set_distance(double num){
+	this->distance = num;
+}//set_distance
 

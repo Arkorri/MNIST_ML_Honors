@@ -18,26 +18,55 @@ dataHandler::dataHandler() {//initialization of variables
 	this->featurePath = "";
 	this->labelPath = "";
 	this->num_classes = 0;
+	this->loaded = false;
 }//dataHandler
 
 dataHandler::~dataHandler() {//de-allocate dynamic memory
 	for(unsigned int i = 0; i < data_array->size(); i++){
 		delete data_array->at(i);
-	}
+	}//for
 	delete this->data_array;
 	delete this->test_data;
 	delete this->training_data;
 	delete this->validation_data;
 }//~dataHandler
 
-void dataHandler::load(void){
-	this->read_feature_vector(featurePath);
-	this->read_feature_labels(labelPath);
-	this->split_data();
-	this->count_classes();
+bool dataHandler::load(void){
+	std::cout << "Loading data into dataHandler" << std::endl;
+	if(this->read_feature_vector(featurePath)){
+		if(this->read_feature_labels(labelPath)){
+			this->split_data();
+			this->count_classes();
+			this->loaded = true;
+			return true;
+		} else {
+			this->unload();
+			return false;
+		}//if/else
+	} else {
+		this->unload();
+		return false;
+	}//if/else
 }//load
 
-void dataHandler::read_feature_vector(std::string path){
+void dataHandler::unload(void){
+	for(int i = data_array->size() - 1; i > -1; i--){
+		delete data_array->at(i);
+	}//for
+	data_array->clear();
+	test_data->clear();
+	training_data->clear();
+	validation_data->clear();
+	class_map.clear();
+	std::cout << "data has been unloaded" << std::endl;
+	this->loaded = false;
+}//clear
+
+bool dataHandler::isLoaded(void){
+	return this->loaded;
+}//isLoaded
+
+bool dataHandler::read_feature_vector(std::string path){
 	uint32_t header[4];// |MAGIC|NUM IMAGES|ROW SIZE|COLUMN SIZE|
 	unsigned char bytes[4];
 	FILE *file = fopen(path.c_str(), "rb");//read bytes only
@@ -56,20 +85,21 @@ void dataHandler::read_feature_vector(std::string path){
 				if(fread(element, sizeof(element), 1, file)){
 					image->append_to_vector(element[0]);
 				} else {
-					std::cerr << "Error reading from file in dataHandler.read_feature_vector() \nending program" << std::endl;
-					exit(1);
+					std::cerr << "Error reading from file in dataHandler.read_feature_vector()" << std::endl;
+					return false;
 				}//if/else
 			}//for
 			this->data_array->push_back(image);
 		}//for
 		std::cout << "Successfully read file and stored data points. " << this->data_array->size() << std::endl;
 	} else {
-		std::cerr << "Unable to read file in dataHandler.read_feature_vector() \nending program" << std::endl;
-		exit(1);
+		std::cerr << "Unable to read file in dataHandler.read_feature_vector()" << std::endl;
+		return false;
 	}//if/else
+	return true;
 }//read_feature_vector
 
-void dataHandler::read_feature_labels(std::string path){
+bool dataHandler::read_feature_labels(std::string path){
 uint32_t header[2];// |MAGIC|NUM IMAGES|
 	unsigned char bytes[4];
 	FILE *file = fopen(path.c_str(), "rb");//read bytes only
@@ -86,14 +116,15 @@ uint32_t header[2];// |MAGIC|NUM IMAGES|
 				this->data_array->at(i)->set_lable(element[0]);
 			} else {
 				std::cerr << "Error reading from file in dataHandler.read_feature_labels() \n ending program" << std::endl;
-				exit(1);
+				return false;
 			}//if/else
 		}//for
 		std::cout << "Successfully read file and stored labels. " << std::endl;
 	} else {
 		std::cerr << "Unable to read file in dataHandler.read_feature_labels() \n ending program" << std::endl;
-		exit(1);
+		return false;
 	}//if/else
+	return true;
 }//read_feature_labels
 
 void dataHandler::shuffle_data(){
@@ -190,10 +221,10 @@ bool dataHandler::setFeaturePath(void){
 				this->featurePath = path;
 				return true;
 			} else {
-				std::cerr << "incorrect file type, please try again" << std::endl;
+				std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
 			}//if/e;se
 		}else {
-			std::cerr << "incorrect file type, please try again" << std::endl;
+			std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
 		}//if/else
 	}while(true);//do-while
 	return false;
@@ -214,10 +245,10 @@ bool dataHandler::setLabelPath(void){
 				this->labelPath = path;
 				return true;
 			} else {
-				std::cerr << "incorrect file type, please try again" << std::endl;
+				std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
 			}//if/else
 		}else {
-			std::cerr << "incorrect file type, please try again" << std::endl;
+			std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
 		}//if/else
 	}while(true);//do-while
 	return false;

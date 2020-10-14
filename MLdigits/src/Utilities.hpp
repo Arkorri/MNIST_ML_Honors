@@ -11,6 +11,12 @@
 #include <iostream>
 #include <string>
 
+	//error struct for try/catch blocks
+	struct error{
+		int errorCode;
+		std::string errorMSG;
+	};
+
 	//getString
 	//Description:		gets a string from the user
 	//						that's length is less than or
