@@ -38,7 +38,7 @@ int main() {
 		}//if/else
 	}while(!dh->load());
 
-	std::cout << "Please enter a value for k" << std::endl;
+	std::cout << "\nPlease enter a value for k (recommended between 1-5)" << std::endl;
 	choice = getInt(1,99);
 	knear->set_k(choice);
 	if(knear->load(dh)){

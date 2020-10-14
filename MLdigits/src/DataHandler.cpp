@@ -38,6 +38,7 @@ bool dataHandler::load(void){
 			this->split_data();
 			this->count_classes();
 			this->loaded = true;
+			std::cout << "Finished loading" << std::endl;
 			return true;
 		} else {
 			this->unload();
@@ -86,6 +87,7 @@ bool dataHandler::read_feature_vector(std::string path){
 					image->append_to_vector(element[0]);
 				} else {
 					std::cerr << "Error reading from file in dataHandler.read_feature_vector()" << std::endl;
+					this->unload();
 					return false;
 				}//if/else
 			}//for
@@ -94,6 +96,7 @@ bool dataHandler::read_feature_vector(std::string path){
 		std::cout << "Successfully read file and stored data points. " << this->data_array->size() << std::endl;
 	} else {
 		std::cerr << "Unable to read file in dataHandler.read_feature_vector()" << std::endl;
+		this->unload();
 		return false;
 	}//if/else
 	return true;
@@ -115,13 +118,15 @@ uint32_t header[2];// |MAGIC|NUM IMAGES|
 			if(fread(element, sizeof(element), 1, file)){
 				this->data_array->at(i)->set_lable(element[0]);
 			} else {
-				std::cerr << "Error reading from file in dataHandler.read_feature_labels() \n ending program" << std::endl;
+				std::cerr << "Error reading from file in dataHandler.read_feature_labels()" << std::endl;
+				this->unload();
 				return false;
 			}//if/else
 		}//for
 		std::cout << "Successfully read file and stored labels. " << std::endl;
 	} else {
-		std::cerr << "Unable to read file in dataHandler.read_feature_labels() \n ending program" << std::endl;
+		std::cerr << "Unable to read file in dataHandler.read_feature_labels()" << std::endl;
+		this->unload();
 		return false;
 	}//if/else
 	return true;

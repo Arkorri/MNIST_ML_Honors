@@ -29,11 +29,12 @@ Knn::~Knn() {
 
 bool Knn::load(dataHandler* dh){
 	if(dh->isLoaded()){
+		std::cout << "Loading data into knn" << std::endl;
 		this->set_test_data(dh->get_test_data());
 		this->set_training_data(dh->get_training_data());
 		this->set_validation_data(dh->get_validation_data());
+		std::cout << "Finished loading" << std::endl;
 		this->loaded = true;
-		std::cout << "Loading data into knn" << std::endl;
 		return true;
 	} else {
 		std::cerr << "Error: attempted to load data with an empty dataHandler" << std::endl;
