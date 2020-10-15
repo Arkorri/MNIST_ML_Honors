@@ -24,23 +24,24 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 -Note: most functions are handled by the classes themselves\
 **1. Create a new DataHandler object**\
 \
-**2. Set the file paths using the DataHandler .setLabelPath(string) and .setFeaturePath(string) function**\
+**2. Set the file paths using the DataHandler setLabelPath(string) and setFeaturePath(string) function**\
 -Paths must be defined from the location in which the program was launched\
 -i.e. if launching from eclipse with the files in the project folder ("./filename")\
 \
-**3. Load the data with the DataHandler .load() function**\
+**3. Load the data with the DataHandler load() function**\
 -This will return true if the load was successful, or false if it failed\
 -If the load failed, the class will automatically unload data\
 \
 **4. Create a new Knn object**\
--This can be done with the default instructor, or can be given a k value by passing an integer\
+-This can be done with the default constructor, or can be given a k value by passing an integer\
+-If the default constructor was called you must first call Knn->set_k(int) before step 5\
 \
-**5. call the Knn .load(DataHandler) function by passing it a pointer to the previous created DataHandler object**\
+**5. Call the Knn .load(DataHandler) function by passing it a pointer to the previously created DataHandler object**\
 -This will return true if successfull, or false if the load failed\
 \
-**6. You can now call the Knn .validate_performance() and .test_performance() functions**\
+**6. You can now call the Knn validate_performance() and test_performance() functions**\
 -These will run the algorithm and print results to the console.\
 -After they finish they will return a double containing the overall performance as a percent\
 -These functions take a long time to complete\
 \
-**7. If you wish to input new data into the classes you must call the .unload() function for each object first**
+**7. If you wish to input new data into the classes you must call the unload() function for each object first**
