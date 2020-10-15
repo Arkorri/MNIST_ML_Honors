@@ -8,7 +8,7 @@ x64-based PC\
 Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Processor(s)\
 
 ## How to use the provided main
-**1. On start program will ask if you want to use custom data, or provided MNIST data**\
+**1. On program start it will ask if you want to use custom data, or provided MNIST data**\
 -It is highly recommended to use the provided data\
 -If you want to use custom data, when the prompts you for the path you must input the full path starting from the directory in which the .exe is called\
 -Custom file(s) must also have the extension idx3-ubyte (for image files) or idx1-ubyte (for label files)\
