@@ -20,7 +20,7 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 **1. Create a new DataHandler object**\
 \
 **2. Set the file paths using the DataHandler .setLabelPath(string) and .setFeaturePath(string) function**\
--Paths must be defined from the location in which the program was launched
+-Paths must be defined from the location in which the program was launched\
 -i.e. if launching from eclipse with the files in the project folder ("./filename")\
 \
 **3. Load the data with the DataHandler .load() function**\
