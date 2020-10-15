@@ -20,7 +20,7 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 **#include "Data.hpp"**\
 **#include "DataHandler.hpp"**\
 **#include "Knn.hpp"**\
--Data.hpp requires no programmer or use interaction\
+-Data.hpp requires no programmer or user interaction\
 -Note: most functions are handled by the classes themselves\
 \
 **1. Create a new DataHandler object**\
