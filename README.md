@@ -16,6 +16,11 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 **2. Input the desired K value when prompted**\
 -Note: higher k values substantially increase program runtime
 ## How to use the DataHandler and Knn classes
+-Required preprocessor commands\
+**#include "Data.hpp"**\
+**#include "DataHandler.hpp"**\
+**#include "Knn.hpp"**\
+-Data.hpp requires no programmer or use interaction\
 -Note: most functions are handled by the classes themselves\
 **1. Create a new DataHandler object**\
 \
@@ -38,3 +43,4 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 -After they finish they will return a double containing the overall performance as a percent\
 -These functions take a long time to complete\
 \
+**7. If you wish to input new data into the classes you must call the .unload() function for each object first**
