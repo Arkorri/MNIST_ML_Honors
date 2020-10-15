@@ -14,7 +14,7 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 -Custom file(s) must also have the extension idx3-ubyte (for image files) or idx1-ubyte (for label files)\
 \
 **2. Input the desired K value when prompted**\
--Note: higher k values substantially increase program runtime\
+-Note: higher k values substantially increase program runtime
 ## How to use the DataHandler and Knn classes
 -Note: most functions are handled by the classes themselves\
 **1. Create a new DataHandler object**\
