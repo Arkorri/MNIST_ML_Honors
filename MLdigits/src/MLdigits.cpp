@@ -13,6 +13,6 @@ int main() {
 
 
 
-	cout << "end program" << endl; // prints !!!Hello World!!!
+	cout << "end test" << endl; // prints !!!Hello World!!!
 	return 0;
 }
