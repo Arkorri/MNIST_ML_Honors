@@ -1,7 +1,7 @@
 # MNIST_ML_Honors
 ##### CS20 LPC. ML program using the MNIST database to identify handwritten digits 1-9 written in C++ using the Eclipse IDE
 \
-**Developement System Specs**
+**Developement System Specs**\
 Microsoft Windows 10\
 x64-based PC\
 16.0 GB memory\
