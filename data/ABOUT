@@ -1,18 +1,18 @@
-##About the MNIST data set
+About the MNIST data set
 all data pulled from http://yann.lecun.com/exdb/mnist/
 
-**Training set of 60000 examples**
+Training set of 60000 examples
 train-images-idx3-ubyte: training set images
 train-labels-idx1-ubyte: training set labels
 
-**Test set of 10000 examples**
+Test set of 10000 examples
 t10k-images-idx3-ubyte:  test set images
 t10k-labels-idx1-ubyte:  test set labels
 
 Files can be found in the Data folder
 
-#######DATA FORMAT:
-**TRAINING SET LABEL FILE** (train-labels-idx1-ubyte):
+DATA FORMAT:
+TRAINING SET LABEL FILE (train-labels-idx1-ubyte):
 [offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000801(2049) magic number (MSB first)
 0004     32 bit integer  60000            number of items
@@ -22,7 +22,7 @@ Files can be found in the Data folder
 xxxx     unsigned byte   ??               label
 The labels values are 0 to 9.
 
-**TRAINING SET IMAGE FILE** (train-images-idx3-ubyte):
+TRAINING SET IMAGE FILE (train-images-idx3-ubyte):
 [offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000803(2051) magic number
 0004     32 bit integer  60000            number of images
@@ -34,7 +34,7 @@ The labels values are 0 to 9.
 xxxx     unsigned byte   ??               pixel
 Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
 
-**TEST SET LABEL FILE** (t10k-labels-idx1-ubyte):
+TEST SET LABEL FILE (t10k-labels-idx1-ubyte):
 [offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000801(2049) magic number (MSB first)
 0004     32 bit integer  10000            number of items
@@ -44,7 +44,7 @@ Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (wh
 xxxx     unsigned byte   ??               label
 The labels values are 0 to 9.
 
-**TEST SET IMAGE FILE** (t10k-images-idx3-ubyte):
+TEST SET IMAGE FILE (t10k-images-idx3-ubyte):
 [offset] [type]          [value]          [description]
 0000     32 bit integer  0x00000803(2051) magic number
 0004     32 bit integer  10000            number of images
