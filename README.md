@@ -5,7 +5,7 @@
 Microsoft Windows 10\
 x64-based PC\
 16.0 GB memory\
-Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Processor(s)\
+Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Processor(s)
 
 ## How to use the provided main
 **1. On program start it will ask if you want to use custom data, or provided MNIST data**\
