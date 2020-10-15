@@ -1,4 +1,4 @@
-##About the MNIST data set
+##'About the MNIST data set'
 all data pulled from http://yann.lecun.com/exdb/mnist/
 
 **Training set of 60000 examples**
