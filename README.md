@@ -1,6 +1,6 @@
 # MNIST_ML_Honors
 ##### CS20 LPC. ML program using the MNIST database to identify handwritten digits 0-9 written in C++ using the Eclipse IDE
-\
+
 **Developement System Specs**\
 Microsoft Windows 10\
 x64-based PC\
@@ -22,6 +22,7 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 **#include "Knn.hpp"**\
 -Data.hpp requires no programmer or use interaction\
 -Note: most functions are handled by the classes themselves\
+\
 **1. Create a new DataHandler object**\
 \
 **2. Set the file paths using the DataHandler setLabelPath(string) and setFeaturePath(string) function**\
