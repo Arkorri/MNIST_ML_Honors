@@ -11,6 +11,11 @@
 #include <iostream>
 #include <string>
 
+	//function pre-fix template
+	//Desciption:
+	//Preconditions:
+	//Postconditions:
+
 	//error struct for try/catch blocks
 	struct error{
 		int errorCode;
@@ -25,7 +30,19 @@
 	//Preconditions:	-maxLength is positive
 	//Postconditions:	-a string is returned
 	//					-returns "" as default
-	std::string getString(unsigned int maxLength);
+	//std::string getString(unsigned int maxLength);
+
+	//getString
+	//Description:		gets a string from the user
+	//						that's length is between a min
+	//						and max value. Continues to ask
+	//						until value is valid
+	//Preconditions:	-max is positive
+	//					-min is positive
+	//Postconditions:	-a string is returned
+	//					-returns "" as default
+	//					-leading/trailing whitespace removed
+	std::string getString(unsigned int min, unsigned int max);
 
 	//getInt
 	//Description:		gets an integer from the user between
@@ -41,5 +58,21 @@
 	//Preconditions:	-cin is not empty
 	//Postconditions:	-cin is empty
 	void clearCin(void);
+
+	//getChar
+	//Desciption:		gets and returns a single character
+	//						input from the user
+	//Preconditions:	-none
+	//Postconditions:	-returns a char
+	//					-returns '0' as default
+	char getChar(void);
+
+	//function yn
+	//Desciption:		gets and returns a char of 'y' or 'n'
+	//						from the user
+	//Preconditions:	-none
+	//Postconditions:	-returns true if y
+	//					-false if n
+	bool yn(void);
 
 #endif /* UTILITIES_HPP_ */
