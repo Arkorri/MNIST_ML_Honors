@@ -20,6 +20,9 @@ int main() {
 //	double best_performance = 0.0;
 //	unsigned int best_k = 1;
 
+	std::cout << "Is your system using an Intel processor?" << std::endl;
+	dh->setIsIntel(yn());
+
 	do{
 		std::cout << "Do you want to use default data or use custom data?" << std::endl;
 		std::cout << "1. Default Data (recommended)" << std::endl;
