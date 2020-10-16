@@ -7,6 +7,11 @@ x64-based PC\
 16.0 GB memory\
 Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Processor(s)
 
+## How to download
+**Releases**\
+-The source.zip file located in each release contains all necessary code and files.\
+-If you are using eclipse, the zip file can be **imported** as an **existing project**
+
 ## How to use the provided main
 **1. On program start it will ask if you want to use custom data, or provided MNIST data**\
 -It is highly recommended to use the provided data\
