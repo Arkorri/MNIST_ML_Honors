@@ -89,7 +89,7 @@ bool yn(void) {
 		} else {
 			std::cout << "Invalid input, please try again (y/n)" << std::endl;
 		}//if/elif/else
-	}while(toupper(choice) != 'Y' && toupper(choice) == 'N');//do-while
+	}while(toupper(choice) != 'Y' && toupper(choice) != 'N');//do-while
 	return false;//should never reach
 }//yn
 
