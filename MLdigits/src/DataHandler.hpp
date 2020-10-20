@@ -170,6 +170,12 @@ public:
 	//					-returns true if successful, false if not
 	bool setLabelPath(std::string);
 
+	//setIsIntel
+	//Desciption:		sets weather the system is using intel or not
+	//Preconditions:	-none
+	//Postconditions:	-isIntel is set as true or false
+	void setIsIntel(bool);
+
 private:
 	std::vector<data *> *data_array;		//array holding all data from the file
 	std::vector<data *> *training_data;		//array holding a portion of data_array
@@ -181,6 +187,7 @@ private:
 	std::string featurePath;				//directory path for the file holding class data
 	std::string labelPath;					//directory path for the file holding class names
 	bool loaded;							//keeps track of if the class is holding data
+	bool isIntel;							//keeps track of if the system is using an Intel processor
 
 	//used for data splits
 	//double represents a % of data to be used for each set of data

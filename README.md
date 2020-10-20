@@ -13,9 +13,11 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 -If you are using eclipse, the zip file can be **imported** as an **existing project**
 
 ## How to use the provided main
-**1. On program start it will ask if you want to use custom data, or provided MNIST data**\
+**1. On program start it will ask if you are using an Intel processor, reply with a 'y' or 'n'**\
+\
+**2. It will then ask if you want to use custom data, or provided MNIST data**\
 -It is highly recommended to use the provided data\
--If you want to use custom data, when the prompts you for the path you must input the full path starting from the directory in which the .exe is called\
+-If you want to use custom data, when prompted for the file path you must input the full path starting from the directory in which the .exe is called\
 -Custom file(s) must also have the extension idx3-ubyte (for image files) or idx1-ubyte (for label files)\
 \
 **2. Input the desired K value when prompted**\
@@ -30,24 +32,26 @@ Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Proce
 \
 **1. Create a new DataHandler object**\
 \
-**2. Set the file paths using the DataHandler setLabelPath(string) and setFeaturePath(string) function**\
+**2. Use the DataHandler setIsIntel(bool) function to say whether or not an Intel processor is being used**\
+\
+**3. Set the file paths using the DataHandler setLabelPath(string) and setFeaturePath(string) function**\
 -Paths must be defined from the location in which the program was launched\
 -i.e. if launching from eclipse with the files in the project folder ("./filename")\
 \
-**3. Load the data with the DataHandler load() function**\
+**4. Load the data with the DataHandler load() function**\
 -This will return true if the load was successful, or false if it failed\
 -If the load failed, the class will automatically unload data\
 \
-**4. Create a new Knn object**\
+**5. Create a new Knn object**\
 -This can be done with the default constructor, or can be given a k value by passing an integer\
 -If the default constructor was called you must first call Knn->set_k(int) before step 5\
 \
-**5. Call the Knn .load(DataHandler) function by passing it a pointer to the previously created DataHandler object**\
+**6. Call the Knn .load(DataHandler) function by passing it a pointer to the previously created DataHandler object**\
 -This will return true if successfull, or false if the load failed\
 \
-**6. You can now call the Knn validate_performance() and test_performance() functions**\
+**7. You can now call the Knn validate_performance() and test_performance() functions**\
 -These will run the algorithm and print results to the console.\
 -After they finish they will return a double containing the overall performance as a percent\
 -These functions take a long time to complete\
 \
-**7. If you wish to input new data into the classes you must call the unload() function for each object first**
+**8. If you wish to input new data into the classes you must call the unload() function for each object first**

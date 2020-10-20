@@ -74,7 +74,11 @@ bool dataHandler::read_feature_vector(std::string path){
 	if(file){
 		for(unsigned int i = 0; i < 4; i++){
 			if(fread(bytes, sizeof(bytes), 1, file)){
-				header[i] = convert_to_little_endian(bytes);
+				if(isIntel){
+					header[i] = convert_to_little_endian(bytes);
+				} else {
+					header[i] = (uint32_t)bytes;
+				}//if/else
 			}//if
 		}//for
 		std::cout << "Finished getting data file header" << std::endl;
@@ -87,7 +91,6 @@ bool dataHandler::read_feature_vector(std::string path){
 					image->append_to_vector(element[0]);
 				} else {
 					std::cerr << "Error reading from file in dataHandler.read_feature_vector()" << std::endl;
-					this->unload();
 					return false;
 				}//if/else
 			}//for
@@ -96,7 +99,6 @@ bool dataHandler::read_feature_vector(std::string path){
 		std::cout << "Successfully read file and stored data points. " << this->data_array->size() << std::endl;
 	} else {
 		std::cerr << "Unable to read file in dataHandler.read_feature_vector()" << std::endl;
-		this->unload();
 		return false;
 	}//if/else
 	return true;
@@ -109,7 +111,11 @@ uint32_t header[2];// |MAGIC|NUM IMAGES|
 	if(file){
 		for(unsigned int i = 0; i < 2; i++){
 			if(fread(bytes, sizeof(bytes), 1, file)){
-				header[i] = convert_to_little_endian(bytes);
+				if(isIntel){
+					header[i] = convert_to_little_endian(bytes);
+				} else {
+					header[i] = (uint32_t)bytes;
+				}//if/else
 			}//if
 		}//for
 		std::cout << "Finished getting label file header" << std::endl;
@@ -119,14 +125,12 @@ uint32_t header[2];// |MAGIC|NUM IMAGES|
 				this->data_array->at(i)->set_lable(element[0]);
 			} else {
 				std::cerr << "Error reading from file in dataHandler.read_feature_labels()" << std::endl;
-				this->unload();
 				return false;
 			}//if/else
 		}//for
 		std::cout << "Successfully read file and stored labels. " << std::endl;
 	} else {
 		std::cerr << "Unable to read file in dataHandler.read_feature_labels()" << std::endl;
-		this->unload();
 		return false;
 	}//if/else
 	return true;
@@ -220,14 +224,14 @@ bool dataHandler::setFeaturePath(void){
 	std::string extension = ".idx3-ubyte";
 	std::string path = "";
 	do{
-		path = getString(64);
+		path = getString(1,64);
 		if(path.length() > extension.length()){
 			if(0 == path.compare(path.length() - extension.length(), extension.length(), extension)){
 				this->featurePath = path;
 				return true;
 			} else {
 				std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
-			}//if/e;se
+			}//if/else
 		}else {
 			std::cerr << "incorrect file type, please try again (must end in " << extension << ")" << std::endl;
 		}//if/else
@@ -244,7 +248,7 @@ bool dataHandler::setLabelPath(void){
 	std::string extension = ".idx1-ubyte";
 	std::string path = "";
 	do{
-		path = getString(64);
+		path = getString(1,64);
 		if(path.length() > extension.length()){
 			if(0 == path.compare(path.length() - extension.length(), extension.length(), extension)){
 				this->labelPath = path;
@@ -263,4 +267,8 @@ bool dataHandler::setLabelPath(std::string path){//overloaded for default
 	this->labelPath = path;
 	return true;
 }//setLabelPath
+
+void dataHandler::setIsIntel(bool x){
+	this->isIntel = x;
+}//setIsIntel
 
